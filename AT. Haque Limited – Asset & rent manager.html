@@ -1,0 +1,1165 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>AT. Haque Limited – Asset &amp; rent manager</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #EDF0F6;
+            --card: #fff;
+            --ink: #14213D;
+            --mut: #667085;
+            --line: #E2E7F0;
+            --soft: #F4F6FB;
+            --nav: #0D1A33;
+            --gold: #D9A441;
+            --ok: #12A072;
+            --part: #E39325;
+            --bad: #E5484D;
+            --clm: #6E56CF;
+            box-sizing: border-box;
+            padding-top: env(safe-area-inset-top, 0px);
+            padding-bottom: env(safe-area-inset-bottom, 0px)
+        }
+
+        @media(prefers-color-scheme:dark) {
+            :root:not([data-theme="light"]) {
+                --bg: #0A101D;
+                --card: #121B2E;
+                --ink: #E8ECF4;
+                --mut: #93A0B8;
+                --line: #22304A;
+                --soft: #17223A
+            }
+        }
+
+        :root[data-theme="dark"] {
+            --bg: #0A101D;
+            --card: #121B2E;
+            --ink: #E8ECF4;
+            --mut: #93A0B8;
+            --line: #22304A;
+            --soft: #17223A
+        }
+
+        html {
+            scroll-padding-top: env(safe-area-inset-top, 0px)
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--ink);
+            font: 14px/1.5 "Plus Jakarta Sans", system-ui, sans-serif;
+            font-variant-numeric: tabular-nums
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit;
+            color: inherit
+        }
+
+        button {
+            cursor: pointer
+        }
+
+        .app {
+            display: grid;
+            grid-template-columns: 248px 1fr;
+            min-height: 100vh
+        }
+
+        .side {
+            background: var(--nav);
+            color: #C9D3E8;
+            padding: 22px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            align-self: start
+        }
+
+        .logo {
+            display: flex;
+            gap: 11px;
+            align-items: center;
+            padding: 0 8px 22px;
+            color: #fff
+        }
+
+        .logo b {
+            display: grid;
+            place-items: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: var(--gold);
+            color: #0D1A33;
+            font-weight: 800;
+            font-size: 15px
+        }
+
+        .logo span {
+            font-weight: 700;
+            line-height: 1.2
+        }
+
+        .logo small {
+            display: block;
+            font-weight: 400;
+            color: #8FA0C2;
+            font-size: 12px
+        }
+
+        .nav button {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            width: 100%;
+            border: 0;
+            background: none;
+            color: inherit;
+            padding: 11px 12px;
+            border-radius: 10px;
+            text-align: left;
+            font-weight: 500
+        }
+
+        .nav button:hover {
+            background: #16264A
+        }
+
+        .nav button.on {
+            background: #1B2F5B;
+            color: #fff;
+            box-shadow: inset 3px 0 var(--gold)
+        }
+
+        .nav svg {
+            width: 19px;
+            height: 19px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            flex: none
+        }
+
+        .nav em {
+            margin-left: auto;
+            font-style: normal;
+            background: var(--clm);
+            color: #fff;
+            border-radius: 20px;
+            padding: 0 8px;
+            font-size: 12px;
+            font-weight: 700
+        }
+
+        .who2 {
+            margin-top: auto;
+            padding: 12px;
+            border-radius: 12px;
+            background: #12234A
+        }
+
+        .who2 label {
+            font-size: 12px;
+            color: #8FA0C2
+        }
+
+        .who2 select {
+            width: 100%;
+            margin-top: 4px;
+            background: #0D1A33;
+            border: 1px solid #2A3E6B;
+            color: #fff;
+            border-radius: 8px;
+            padding: 7px
+        }
+
+        main {
+            padding: 24px 32px 48px;
+            min-width: 0
+        }
+
+        .top {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            margin-bottom: 22px;
+            flex-wrap: wrap
+        }
+
+        .top h1 {
+            margin: 0;
+            font-size: 24px;
+            letter-spacing: -.02em;
+            flex: 1;
+            min-width: 200px
+        }
+
+        .top input {
+            width: 280px;
+            max-width: 100%;
+            padding: 10px 14px;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            background: var(--card)
+        }
+
+        .pill {
+            padding: 8px 12px;
+            border-radius: 10px;
+            background: var(--card);
+            border: 1px solid var(--line);
+            color: var(--mut);
+            font-size: 13px
+        }
+
+        .hero {
+            background: var(--nav);
+            color: #fff;
+            border-radius: 20px;
+            padding: 28px 32px;
+            display: grid;
+            grid-template-columns: auto 1fr 1.1fr;
+            gap: 34px;
+            align-items: center;
+            margin-bottom: 22px
+        }
+
+        .ring {
+            position: relative;
+            width: 150px;
+            height: 150px
+        }
+
+        .ring svg {
+            transform: rotate(-90deg)
+        }
+
+        .ring div {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-content: center;
+            text-align: center
+        }
+
+        .ring b {
+            font-size: 30px;
+            line-height: 1
+        }
+
+        .ring small {
+            color: #8FA0C2;
+            font-size: 12px
+        }
+
+        .hero h2 {
+            margin: 0 0 4px;
+            font-size: 15px;
+            font-weight: 500;
+            color: #8FA0C2
+        }
+
+        .big {
+            font-size: 38px;
+            font-weight: 800;
+            letter-spacing: -.03em;
+            line-height: 1.1
+        }
+
+        .hk {
+            display: flex;
+            gap: 26px;
+            margin-top: 16px;
+            flex-wrap: wrap
+        }
+
+        .hk div {
+            font-size: 12px;
+            color: #8FA0C2
+        }
+
+        .hk b {
+            display: block;
+            font-size: 17px;
+            color: #fff
+        }
+
+        .trend {
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+            height: 120px
+        }
+
+        .trend div {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 6px;
+            height: 100%;
+            font-size: 11px;
+            color: #8FA0C2
+        }
+
+        .trend i {
+            display: block;
+            width: 100%;
+            border-radius: 6px 6px 2px 2px;
+            background: #223A6B;
+            position: relative;
+            min-height: 4px
+        }
+
+        .trend i u {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 6px 6px 2px 2px;
+            background: var(--gold)
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            gap: 16px
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 18px
+        }
+
+        .cat {
+            cursor: pointer;
+            transition: transform .15s, border-color .15s
+        }
+
+        .cat:hover {
+            transform: translateY(-2px);
+            border-color: var(--gold)
+        }
+
+        .cat h3 {
+            margin: 0;
+            font-size: 16px
+        }
+
+        .cat small,
+        .mut {
+            color: var(--mut)
+        }
+
+        .cat .v {
+            font-size: 22px;
+            font-weight: 800;
+            margin: 12px 0 10px;
+            letter-spacing: -.02em
+        }
+
+        .bar {
+            height: 8px;
+            border-radius: 8px;
+            background: color-mix(in srgb, var(--bad) 28%, var(--soft));
+            overflow: hidden
+        }
+
+        .bar i {
+            display: block;
+            height: 100%;
+            background: var(--ok);
+            border-radius: 8px
+        }
+
+        .row2 {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            margin-top: 8px;
+            color: var(--mut)
+        }
+
+        .row2 b {
+            color: var(--ink)
+        }
+
+        .sec {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 22px
+        }
+
+        h3.t {
+            margin: 0 0 12px;
+            font-size: 16px
+        }
+
+        .li {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            padding: 10px 0;
+            border-top: 1px solid var(--line)
+        }
+
+        .li:first-of-type {
+            border-top: 0
+        }
+
+        .li>div:nth-child(2) {
+            flex: 1;
+            min-width: 0
+        }
+
+        .li b {
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis
+        }
+
+        .kp {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 14px;
+            margin-bottom: 18px
+        }
+
+        .kp .card b {
+            display: block;
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -.02em
+        }
+
+        .kp span {
+            color: var(--mut);
+            font-size: 12px
+        }
+
+        .bar2 {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            margin-bottom: 14px;
+            flex-wrap: wrap
+        }
+
+        .fl {
+            border: 1px solid var(--line);
+            background: var(--card);
+            border-radius: 20px;
+            padding: 6px 14px;
+            font-weight: 500
+        }
+
+        .fl.on {
+            background: var(--ink);
+            color: var(--bg);
+            border-color: var(--ink)
+        }
+
+        .back {
+            border: 0;
+            background: none;
+            color: var(--mut);
+            padding: 0;
+            margin-bottom: 6px;
+            font-weight: 600
+        }
+
+        .tw {
+            overflow-x: auto;
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 16px
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 720px
+        }
+
+        th {
+            font-size: 12px;
+            color: var(--mut);
+            font-weight: 600;
+            text-align: left;
+            padding: 12px 16px;
+            background: var(--soft)
+        }
+
+        td {
+            padding: 12px 16px;
+            border-top: 1px solid var(--line)
+        }
+
+        tbody tr {
+            cursor: pointer
+        }
+
+        tbody tr:hover {
+            background: var(--soft)
+        }
+
+        .r {
+            text-align: right
+        }
+
+        .warn {
+            color: var(--part);
+            font-weight: 700
+        }
+
+        .empty {
+            text-align: center;
+            color: var(--mut);
+            padding: 30px
+        }
+
+        .who {
+            display: flex;
+            gap: 12px;
+            align-items: center
+        }
+
+        .who small {
+            display: block;
+            color: var(--mut);
+            font-size: 12px
+        }
+
+        .av {
+            display: grid;
+            place-items: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            color: #fff;
+            font-style: normal;
+            font-weight: 700;
+            font-size: 13px;
+            flex: none
+        }
+
+        .chip {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            white-space: nowrap
+        }
+
+        .chip.paid {
+            background: #12A07220;
+            color: var(--ok)
+        }
+
+        .chip.part {
+            background: #E3932520;
+            color: var(--part)
+        }
+
+        .chip.due {
+            background: #E5484D20;
+            color: var(--bad)
+        }
+
+        .chip.claim {
+            background: #6E56CF22;
+            color: var(--clm)
+        }
+
+        .chip.exp {
+            background: var(--soft);
+            color: var(--mut)
+        }
+
+        .btn {
+            border: 1px solid var(--line);
+            background: var(--card);
+            padding: 8px 14px;
+            border-radius: 10px;
+            font-weight: 600
+        }
+
+        .btn.p {
+            background: var(--nav);
+            color: #fff;
+            border-color: var(--nav)
+        }
+
+        .btn.g {
+            background: var(--ok);
+            color: #fff;
+            border-color: var(--ok)
+        }
+
+        .btn.x {
+            color: var(--bad)
+        }
+
+        .btn:hover {
+            filter: brightness(1.08)
+        }
+
+        .dr {
+            position: fixed;
+            inset: 0 0 0 auto;
+            width: min(560px, 100%);
+            background: var(--card);
+            border-left: 1px solid var(--line);
+            box-shadow: -20px 0 50px #0004;
+            transform: translateX(105%);
+            transition: transform .25s;
+            z-index: 20;
+            overflow-y: auto;
+            padding: 24px
+        }
+
+        .dr.o {
+            transform: none
+        }
+
+        .sh {
+            position: fixed;
+            inset: 0;
+            background: #0007;
+            z-index: 15;
+            display: none
+        }
+
+        .sh.o {
+            display: block
+        }
+
+        .tabs {
+            display: flex;
+            gap: 4px;
+            border-bottom: 1px solid var(--line);
+            margin: 18px 0
+        }
+
+        .tabs button {
+            border: 0;
+            background: none;
+            padding: 9px 12px;
+            font-weight: 600;
+            color: var(--mut);
+            border-bottom: 2px solid transparent
+        }
+
+        .tabs button.on {
+            color: var(--ink);
+            border-color: var(--gold)
+        }
+
+        .kv {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px 18px
+        }
+
+        .kv span {
+            display: block;
+            font-size: 12px;
+            color: var(--mut)
+        }
+
+        .kv b {
+            font-weight: 600
+        }
+
+        .box {
+            background: var(--soft);
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 14px
+        }
+
+        .box h4 {
+            margin: 0 0 10px;
+            font-size: 13px
+        }
+
+        .ln {
+            display: flex;
+            justify-content: space-between;
+            padding: 4px 0
+        }
+
+        .ln.tot {
+            border-top: 1px dashed var(--line);
+            margin-top: 6px;
+            padding-top: 8px;
+            font-weight: 800
+        }
+
+        .tl {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            flex-wrap: wrap
+        }
+
+        .tl span {
+            padding: 6px 10px;
+            border-radius: 8px;
+            background: var(--card);
+            border: 1px solid var(--line);
+            font-size: 12px
+        }
+
+        .tl span.d {
+            background: var(--nav);
+            color: #fff;
+            border-color: var(--nav)
+        }
+
+        .docs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px
+        }
+
+        .doc {
+            aspect-ratio: 3/4;
+            border-radius: 10px;
+            border: 1px dashed var(--mut);
+            display: grid;
+            place-items: center;
+            text-align: center;
+            font-size: 12px;
+            color: var(--mut);
+            background: repeating-linear-gradient(0deg, var(--soft) 0 10px, transparent 10px 20px);
+            padding: 6px
+        }
+
+        .note {
+            border-left: 3px solid var(--gold);
+            padding: 6px 12px;
+            margin-bottom: 10px;
+            background: var(--soft);
+            border-radius: 0 8px 8px 0;
+            font-size: 13px
+        }
+
+        .note small {
+            color: var(--mut);
+            display: block
+        }
+
+        .md {
+            position: fixed;
+            inset: 0;
+            display: none;
+            place-items: center;
+            background: #000a;
+            z-index: 30;
+            padding: 16px
+        }
+
+        .md.o {
+            display: grid
+        }
+
+        .md>div {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 24px;
+            width: min(460px, 100%);
+            max-height: 92vh;
+            overflow: auto
+        }
+
+        .md h3 {
+            margin: 0 0 14px
+        }
+
+        .md label {
+            display: block;
+            font-size: 12px;
+            color: var(--mut);
+            margin-top: 10px
+        }
+
+        .md input,
+        .md textarea {
+            width: 100%;
+            padding: 9px 12px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: var(--bg)
+        }
+
+        .err {
+            color: var(--bad);
+            font-size: 12px;
+            min-height: 16px
+        }
+
+        .toast {
+            position: fixed;
+            left: 50%;
+            bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+            transform: translate(-50%, 40px);
+            background: var(--ink);
+            color: var(--bg);
+            padding: 11px 18px;
+            border-radius: 12px;
+            opacity: 0;
+            transition: .25s;
+            z-index: 40;
+            font-weight: 600
+        }
+
+        .toast.o {
+            opacity: 1;
+            transform: translate(-50%, 0)
+        }
+
+        @media(max-width:1000px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: left
+            }
+
+            .sec {
+                grid-template-columns: 1fr
+            }
+        }
+
+        @media(max-width:860px) {
+            .app {
+                grid-template-columns: 64px 1fr
+            }
+
+            .side {
+                padding: 16px 8px
+            }
+
+            .logo span,
+            .nav span,
+            .who2 {
+                display: none
+            }
+
+            .nav button {
+                justify-content: center;
+                padding: 12px
+            }
+
+            .nav em {
+                position: absolute;
+                margin: -22px 0 0 20px
+            }
+
+            main {
+                padding: 18px 14px 40px
+            }
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+            * {
+                transition: none !important
+            }
+        }
+
+        #tn {
+            min-height: 100vh
+        }
+
+        .th {
+            background: var(--nav);
+            color: #fff;
+            padding: 14px 24px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap
+        }
+
+        .th .logo {
+            padding: 0
+        }
+
+        .th select {
+            background: #0D1A33;
+            border: 1px solid #2A3E6B;
+            color: #fff;
+            border-radius: 8px;
+            padding: 7px;
+            max-width: 210px
+        }
+
+        .tc {
+            max-width: 1020px;
+            margin: 0 auto;
+            padding: 28px 16px 56px
+        }
+
+        .tav {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--gold) center/cover;
+            color: #0D1A33;
+            display: grid;
+            place-items: center;
+            font-weight: 800;
+            border: 2px solid #fff4;
+            cursor: pointer;
+            padding: 0
+        }
+
+        .tgrid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 16px;
+            align-items: start
+        }
+
+        .stat {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 16px
+        }
+
+        .stat .big {
+            font-size: 30px
+        }
+
+        .nt2 {
+            display: flex;
+            gap: 10px;
+            padding: 10px 12px;
+            border-radius: 10px;
+            background: var(--soft);
+            margin-bottom: 8px
+        }
+
+        .nt2 i {
+            width: 4px;
+            border-radius: 4px;
+            background: var(--part);
+            flex: none
+        }
+
+        .nt2.bad i {
+            background: var(--bad)
+        }
+
+        .nt2.ok i {
+            background: var(--clm)
+        }
+
+        .nt2 small {
+            display: block;
+            color: var(--mut)
+        }
+
+        .prog {
+            height: 8px;
+            border-radius: 8px;
+            background: var(--soft);
+            overflow: hidden;
+            margin: 6px 0 14px
+        }
+
+        .prog i {
+            display: block;
+            height: 100%;
+            background: var(--nav);
+            border-radius: 8px
+        }
+
+        .md select {
+            width: 100%;
+            padding: 9px 12px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: var(--bg)
+        }
+
+        @media(max-width:860px) {
+            .tgrid {
+                grid-template-columns: 1fr
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <aside class="side">
+            <div class="logo"><b>AT</b><span>AT. Haque Limited<small>Asset &amp; rent manager</small></span></div>
+            <nav class="nav" id="nav"></nav>
+            <div class="who2"><label>Signed in as</label><select id="role" onchange="setRole(this.value)">
+                    <option value="super">Super admin</option>
+                    <option value="admin">Admin</option>
+                    <option value="tenant">Tenant portal (demo)</option>
+                </select></div>
+        </aside>
+        <main>
+            <div class="top">
+                <h1 id="ttl"></h1><input id="q" placeholder="Search tenant, category or unit"
+                    oninput="q=this.value.toLowerCase();if(view!='cat')view='tenants';cat=view=='cat'?cat:null;render()"><button
+                    class="btn p" onclick="setRole('tenant')">Open tenant portal</button><span class="pill">Demo date:
+                    18 Nov 2026</span>
+            </div>
+            <div id="main"></div>
+        </main>
+    </div>
+    <div class="sh" id="sh" onclick="closeT()"></div>
+    <aside class="dr" id="dr"></aside>
+    <div class="md" id="md">
+        <div id="mb"></div>
+    </div>
+    <div id="tn" hidden></div><input type="file" id="pf" accept="image/*" hidden onchange="pimg(this)">
+    <div class="toast" id="ts"></div>
+    <script>
+        const DATA = [{ "i": 1, "c": "Haque Carbide", "u": "SL 1", "t": "Popular Pharmaceuticals Ltd.", "s": "2020-11-01", "e": "2026-10-30", "a": 22000, "p": "01847067877 Mr. Asif", "ad": 0, "g": 660000, "aj": 0, "ait": 0, "n": 540798, "d": 660000, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 2, "c": "Haque Carbide", "u": "SL 2", "t": "Popular Pharmaceuticals Ltd.", "s": "2021-06-01", "e": "2027-05-31", "a": 32000, "p": "01847067877 Mr. Asif", "ad": 30000000, "g": 1200320, "aj": 416667, "ait": 120032, "n": 663621, "d": 992000, "ev": 2, "pc": 0.1, "ty": "Photo Copy" }, { "i": 3, "c": "Haque Carbide", "u": "SL 3", "t": "Popular Pharmaceuticals Ltd.", "s": "2023-07-01", "e": "2033-06-30", "a": 20232, "p": "01847067877 Mr. Asif", "ad": 15000000, "g": 942063, "aj": 125000, "ait": 94206, "n": 722857, "d": 445104, "ev": 2, "pc": 0.15, "ty": "Original" }, { "i": 4, "c": "Haque Carbide", "u": "SL 4", "t": "Ajinomoto Bangladesh Ltd.", "s": "2022-03-01", "e": "2028-02-29", "a": 33400, "p": "1966663867 Mr. Tanvir", "ad": 42084000, "g": 1414490, "aj": 584500, "ait": 141449, "n": 688541, "d": 584500, "ev": 0, "pc": 0, "ty": "Original" }, { "i": 5, "c": "Haque Carbide", "u": "SL 5", "t": "Daraz Bangladesh Ltd", "s": "2026-07-01", "e": "2028-10-30", "a": 77141, "p": "01969609488 Mr. Shuvro", "ad": 29020444, "g": 3224494, "aj": 1209185, "ait": 322449, "n": 1692860, "d": 3224494, "ev": 0, "pc": 0, "ty": "Original" }, { "i": 6, "c": "Haque Drycell", "u": "SL 6", "t": "DEX-I", "s": "2025-11-01", "e": "2027-06-30", "a": 39321, "p": "01970456722 Mr. Mahadi", "ad": 4482594, "g": 1643618, "aj": 0, "ait": 164362, "n": 1479256, "d": 1643617, "ev": 0, "pc": 0, "ty": "Original" }, { "i": 7, "c": "Haque Drycell", "u": "SL 7", "t": "Popular Pharmaceuticals Ltd.", "s": "2023-01-01", "e": "2032-12-31", "a": 20245, "p": "01847067877 Mr. Asif", "ad": 10793820, "g": 1133093, "aj": 89949, "ait": 113309, "n": 929835, "d": 899485, "ev": 1, "pc": 0.08, "ty": "Original" }, { "i": 8, "c": "Haque Drycell", "u": "SL 8", "t": "Popular Pharmaceuticals Ltd.", "s": "2023-07-01", "e": "2033-06-30", "a": 28092, "p": "01847067877 Mr. Asif", "ad": 15000000, "g": 1372941, "aj": 125000, "ait": 137294, "n": 1110647, "d": 1248128, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 9, "c": "Haque Drycell", "u": "SL 9", "t": "Alfamart Trading BD Ltd.", "s": "2025-11-01", "e": "2027-10-31", "a": 55445, "p": "(+)6281294676071 Mr. Munir", "ad": 23668944, "g": 1972412, "aj": 739655, "ait": 197241, "n": 1035516, "d": 1399840, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 10, "c": "Haque Drycell", "u": "SL 11", "t": "Wipro Enterprise(P) Ltd.", "s": "2025-11-01", "e": "2027-10-31", "a": 200, "p": "01682651893 Mr. Khaled", "ad": 0, "g": 22000, "aj": 0, "ait": 1100, "n": 20900, "d": 22000, "ev": 2, "pc": 0, "ty": "Original" }, { "i": 11, "c": "Haque Ltd", "u": "SL 12", "t": "Berger Paints Bangladesh Ltd", "s": "2016-12-01", "e": "2026-11-30", "a": 28687, "p": "01755677171 Mr. Sahedur", "ad": 0, "g": 1720361, "aj": 298703, "ait": 172036, "n": 1249622, "d": 945271, "ev": 1, "pc": 0.08, "ty": "Photo Copy" }, { "i": 12, "c": "Haque Foods", "u": "SL 13", "t": "Runner Automobiles Ltd.", "s": "2021-10-01", "e": "2031-11-30", "a": 3600, "p": "01730405320 Mr. Shanat CFO", "ad": 53679882, "g": 293014, "aj": 455202, "ait": 14651, "n": 278363, "d": 198000, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 13, "c": "Haque Foods", "u": "SL 14", "t": "Runner Automobiles Ltd.", "s": "2021-10-01", "e": "2031-11-30", "a": 3600, "p": "01730405320 Mr. Shanat CFO", "ad": 0, "g": 198000, "aj": 0, "ait": 0, "n": 198000, "d": 198000, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 14, "c": "Haque Foods", "u": "SL 15", "t": "Runner Automobiles Ltd.", "s": "2021-10-01", "e": "2031-11-30", "a": 4036, "p": "01730405320 Mr. Shanat CFO", "ad": 0, "g": 479160, "aj": 0, "ait": 23958, "n": 455202, "d": 121080, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 15, "c": "Haque Foods", "u": "SL 16", "t": "Runner Automobiles Ltd.", "s": "2021-10-01", "e": "2031-11-30", "a": 4036, "p": "01730405320 Mr. Shanat CFO", "ad": 0, "g": 121080, "aj": 0, "ait": 0, "n": 121080, "d": 121080, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 16, "c": "Haque Foods", "u": "SL 17", "t": "CG Runner BD Ltd.", "s": "2024-04-01", "e": "2034-03-31", "a": 10986, "p": "01730405320 Mr. Shanat CFO", "ad": 7415550, "g": 906345, "aj": 205988, "ait": 90634, "n": 609722, "d": 823950, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 17, "c": "Haque Foods", "u": "SL 18", "t": "CG Runner BD Ltd.", "s": "2025-08-01", "e": "2031-07-31", "a": 3200, "p": "01730405320 Mr. Shanat CFO", "ad": 528000, "g": 176000, "aj": 7333, "ait": 17600, "n": 151067, "d": 176000, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 18, "c": "Haque Foods", "u": "SL 19", "t": "ACI Motors Ltd.", "s": "2021-07-01", "e": "2027-06-30", "a": 5661, "p": "01715554279 Mr. A Mannan", "ad": 16099884, "g": 811702, "aj": 223610, "ait": 81170, "n": 506922, "d": 670828, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 19, "c": "Haque Foods", "u": "SL 20", "t": "ACI Motors Ltd.", "s": "2021-08-01", "e": "2027-06-30", "a": 8735, "p": "01715554279 Mr. A Mannan", "ad": 8175960, "g": 824409, "aj": 57577, "ait": 82441, "n": 684391, "d": 681330, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 20, "c": "Haque Foods", "u": "SL 21", "t": "ACI Motors Ltd.", "s": "2022-08-01", "e": "2027-06-30", "a": 6700, "p": "01715554279 Mr. A Mannan", "ad": 4824000, "g": 486420, "aj": 64607, "ait": 48642, "n": 373171, "d": 402000, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 21, "c": "Haque Foods", "u": "SL 22", "t": "ACI Motors Ltd.", "s": "2022-02-01", "e": "2027-06-30", "a": 7100, "p": "01715554279 Mr. A Mannan", "ad": 5964000, "g": 601370, "aj": 68815, "ait": 60137, "n": 472418, "d": 497000, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 22, "c": "Haque Foods", "u": "SL 23", "t": "ACI Motors Ltd.", "s": "2023-01-01", "e": "2027-06-30", "a": 6200, "p": "01715554279 Mr. A Mannan", "ad": 1800000, "g": 220000, "aj": 33333, "ait": 22000, "n": 164667, "d": 200012, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 23, "c": "Haque Foods", "u": "SL 24", "t": "ACI Motors Ltd.", "s": "2026-02-01", "e": "2032-01-31", "a": 4700, "p": "01715554279 Mr. A Mannan", "ad": 5076000, "g": 282000, "aj": 58748, "ait": 28200, "n": 195052, "d": 282000, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 24, "c": "Haque Foods", "u": "SL 25", "t": "ACI Marine & Riverine Technologies Ltd", "s": "2026-02-01", "e": "2032-01-31", "a": 3000, "p": "01715554279 Mr. A Mannan", "ad": 3240000, "g": 180000, "aj": 37500, "ait": 18000, "n": 124500, "d": 180000, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 25, "c": "Haque Foods", "u": "SL 26", "t": "BRAC - Aarong", "s": "2022-12-01", "e": "2032-11-30", "a": 31720, "p": "01313486956 Mr. Shadatullah", "ad": 13322400, "g": 1243424, "aj": 0, "ait": 124342, "n": 1119082, "d": 1110200, "ev": 3, "pc": 0.12, "ty": "Original" }, { "i": 26, "c": "Haque Foods", "u": "SL 27", "t": "Multibrand Workshop Ltd.", "s": "2022-06-01", "e": "2032-05-31", "a": 24720, "p": "01678047007 Mr. Noyon", "ad": 14043900, "g": 1767480, "aj": 0, "ait": 0, "n": 1767480, "d": 1606800, "ev": 3, "pc": 0.1, "ty": "Original" }, { "i": 27, "c": "Haque Foods", "u": "SL 28", "t": "Multibrand Workshop Ltd.", "s": "2022-06-01", "e": "2032-05-31", "a": 11290, "p": "01678047007 Mr. Noyon", "ad": 0, "g": 807235, "aj": 0, "ait": 56856, "n": 750379, "d": 733850, "ev": 3, "pc": 0.1, "ty": "Original" }, { "i": 28, "c": "Haque Foods", "u": "SL 29", "t": "Virgo Media Ltd(Channel 9)", "s": "2022-01-01", "e": "2031-12-31", "a": 24000, "p": "01713409324 Mr. Anis", "ad": 0, "g": 350000, "aj": 0, "ait": 35000, "n": 315000, "d": 350000, "ev": 0, "pc": 0, "ty": "Original" }, { "i": 29, "c": "Haque Foods", "u": "SL 30", "t": "Virgo Media Ltd(Channel 9)", "s": "2022-09-01", "e": "2031-12-31", "a": 850, "p": "01713409324 Mr. Anis", "ad": 0, "g": 30000, "aj": 0, "ait": 3000, "n": 27000, "d": 30000, "ev": 0, "pc": 0, "ty": "Original" }, { "i": 30, "c": "Haque Foods", "u": "SL 31", "t": "Uzzal Thai and Glass House", "s": "2022-12-01", "e": "2032-11-30", "a": 600, "p": "01611880137 Mr. Uzzal", "ad": 0, "g": 39600, "aj": 0, "ait": 0, "n": 39600, "d": 36000, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 31, "c": "Gulshan House", "u": "SL 32", "t": "Ikitchen Ltd.", "s": "2025-03-16", "e": "2033-03-31", "a": 8694, "p": "01717637383 Mr. Nur", "ad": 1600000, "g": 800000, "aj": 66667, "ait": 0, "n": 733333, "d": 800000, "ev": 2, "pc": 0.075, "ty": "Original" }, { "i": 32, "c": "NarayanGang", "u": "SL 33", "t": "Md. Nurul Haque", "s": "2022-05-07", "e": "2032-05-06", "a": 1800, "p": "01713020044 Md. Nurul Haque", "ad": 3060000, "g": 197941, "aj": 0, "ait": 0, "n": 197941, "d": 163532, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 33, "c": "Eskaton", "u": "SL 34", "t": "Md. Kabir Hossen", "s": "2014-04-01", "e": "2019-03-29", "a": 1547, "p": "1713039995 Md. Kabir Hossen", "ad": 0, "g": 40000, "aj": 0, "ait": 0, "n": 40000, "d": 100000, "ev": 2, "pc": 0.15, "ty": "Original" }, { "i": 34, "c": "Eskaton", "u": "SL 34", "t": "Belal Hossain & Abul Kalam Chowdhury", "s": "2026-12-01", "e": "2036-11-30", "a": 4500, "p": "01716503422 belal/01759519489 kalam", "ad": 2500000, "g": 90000, "aj": 50000, "ait": 0, "n": 40000, "d": 90000, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 35, "c": "Eskaton", "u": "SL 35", "t": "Md. Jahangir Alam", "s": "2021-08-01", "e": "2029-07-31", "a": 600, "p": "01680186790 Mr. Obaid", "ad": 300000, "g": 66550, "aj": 0, "ait": 0, "n": 66550, "d": 55000, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 36, "c": "Eskaton", "u": "SL 36", "t": "Mr. Dewan Shajedur Rahman", "s": "2018-07-01", "e": "2028-06-30", "a": 5560, "p": "01713031718 Mr. Sumon/01844560002 Mahmud Hassan Head of Finance", "ad": 3000000, "g": 511761, "aj": 33333, "ait": 51176, "n": 427252, "d": 250000, "ev": 2, "pc": 0.15, "ty": "Photo Copy" }, { "i": 37, "c": "Eskaton", "u": "SL 37", "t": "Vulcan Global Limited", "s": "2026-11-01", "e": "2030-11-01", "a": 360, "p": "01829724323 Mr. Osama", "ad": 100000, "g": 25000, "aj": 0, "ait": 0, "n": 25000, "d": 25000, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 38, "c": "Eskaton", "u": "SL 38", "t": "Md Bakhtiar", "s": "2025-12-01", "e": "2035-09-30", "a": 610, "p": "01711360907 Mr. Baktiar", "ad": 100000, "g": 30000, "aj": 0, "ait": 0, "n": 30000, "d": 30000, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 39, "c": "Eskaton", "u": "SL 39", "t": "Md Bakhtiar", "s": "2025-10-01", "e": "2035-09-30", "a": 3700, "p": "01711360907 Mr. Baktiar", "ad": 1100000, "g": 180000, "aj": 0, "ait": 0, "n": 180000, "d": 180000, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 40, "c": "Eskaton", "u": "SL 40", "t": "Kitchen Museum", "s": "2025-10-01", "e": "2035-09-30", "a": 2000, "p": "01771977414 Mr. Roni", "ad": 500000, "g": 70000, "aj": 0, "ait": 0, "n": 70000, "d": 70000, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 41, "c": "Eskaton", "u": "SL 41", "t": "Md: Tariek Aziz", "s": "2025-12-01", "e": "2031-11-30", "a": 125, "p": "01940228445 Mr. Tariek", "ad": 50000, "g": 8000, "aj": 0, "ait": 0, "n": 8000, "d": 8000, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 42, "c": "Imamgonj", "u": "SL 42", "t": "Md. Ansar Hossain", "s": "2021-10-01", "e": "2032-09-30", "a": 1064, "p": "01711520868 Mr. Ansar", "ad": 1440000, "g": 91960, "aj": 0, "ait": 0, "n": 91960, "d": 76000, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 43, "c": "Imamgonj", "u": "SL 44", "t": "Md. Harun", "s": "2021-10-01", "e": "2031-09-30", "a": 48, "p": "01923522731 Mr. Harun", "ad": 800000, "g": 11980, "aj": 0, "ait": 0, "n": 11980, "d": 9900, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 44, "c": "Imamgonj", "u": "SL 45", "t": "Md. Israil", "s": "2026-03-01", "e": "2034-02-28", "a": 200, "p": "01923522731 Mr. Harun", "ad": 30000, "g": 16000, "aj": 0, "ait": 0, "n": 16000, "d": 16000, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 45, "c": "Imamgonj", "u": "SL 43", "t": "Md. Asraful Alam & others", "s": "2025-03-01", "e": "2033-02-28", "a": 810, "p": "01990904141 Md Ashraf", "ad": 1500000, "g": 59300, "aj": 0, "ait": 0, "n": 59300, "d": 59300, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 46, "c": "Imamgonj", "u": "SL 48", "t": "AB Bank PLC", "s": "2024-07-08", "e": "2030-07-07", "a": 3207, "p": "01948000222 Manager", "ad": 1083537, "g": 180590, "aj": 15049, "ait": 18059, "n": 147482, "d": 180590, "ev": 3, "pc": 0.125, "ty": "Original" }, { "i": 47, "c": "Imamgonj", "u": "SL -", "t": "AB Bank PLC", "s": "2024-07-08", "e": "2030-07-07", "a": 2400, "p": "01948000222 Manager", "ad": 826200, "g": 137700, "aj": 11475, "ait": 13770, "n": 112455, "d": 137700, "ev": 3, "pc": 0.125, "ty": "Original" }, { "i": 48, "c": "Imamgonj", "u": "SL 49", "t": "BCBL", "s": "2020-10-11", "e": "2029-10-10", "a": 2484, "p": "01749399888 Manager", "ad": 2086560, "g": 114927, "aj": 22929, "ait": 0, "n": 91998, "d": 86940, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 49, "c": "Imamgonj", "u": "SL 46", "t": "N.A. Trading", "s": "2020-11-01", "e": "2029-10-31", "a": 900, "p": "01819207027 Mr. Nadim", "ad": 0, "g": 24334, "aj": 0, "ait": 0, "n": 24334, "d": 16000, "ev": 2, "pc": 0.15, "ty": "Original" }, { "i": 50, "c": "Imamgonj", "u": "SL 47", "t": "Md. Samiullah", "s": "2024-07-01", "e": "2034-06-30", "a": 1876, "p": "1753647957 Mr. Samiullah", "ad": 2500000, "g": 45980, "aj": 0, "ait": 0, "n": 45980, "d": 41800, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 51, "c": "Mymensingh", "u": "SL 50", "t": "Topu Kumar Saha", "s": "2025-01-01", "e": "2028-12-31", "a": 740, "p": "01681741724 Mr. Topu", "ad": 120000, "g": 40000, "aj": 0, "ait": 0, "n": 40000, "d": 40000, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 52, "c": "Chittagong", "u": "SL 51", "t": "Shahjalal Islam Bank Ltd", "s": "2021-10-01", "e": "2029-09-30", "a": 3090, "p": "", "ad": 0, "g": 173040, "aj": 0, "ait": 0, "n": 188440, "d": 173040, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 53, "c": "Chittagong", "u": "SL 52", "t": "Meghna Bank PLC", "s": "2025-05-01", "e": "2031-04-30", "a": 2800, "p": "01730700986 Mr. Sohel", "ad": 0, "g": 187348, "aj": 0, "ait": 18735, "n": 168613, "d": 170324, "ev": 0, "pc": 0, "ty": "Original" }, { "i": 54, "c": "Chittagong", "u": "SL 53", "t": "Social Inslami Bank Ltd (SIBL)", "s": "2018-05-01", "e": "2026-04-30", "a": 4800, "p": "01713139023 Manager", "ad": 0, "g": 288000, "aj": 0, "ait": 0, "n": 394200, "d": 288000, "ev": 2, "pc": 0.15, "ty": "Original" }, { "i": 55, "c": "Chittagong", "u": "SL 54", "t": "Progressive Trading Corporation", "s": "2020-08-01", "e": "2029-07-31", "a": 669, "p": "", "ad": 0, "g": 30524, "aj": 0, "ait": 0, "n": 30524, "d": 20070, "ev": 2, "pc": 0.15, "ty": "Original" }, { "i": 56, "c": "Mohakhali", "u": "SL 55", "t": "Samsuddin Ahmed & Others", "s": "2025-04-01", "e": "2033-03-31", "a": 2025, "p": "Katcha Bazar 01714497119", "ad": 1800000, "g": 69300, "aj": 0, "ait": 0, "n": 69300, "d": 69300, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 57, "c": "Mohakhali", "u": "SL 56", "t": "Markaz Car Solutions", "s": "2025-11-01", "e": "2035-10-31", "a": 10800, "p": "01833373333 Mr. Anwar", "ad": 4000000, "g": 285000, "aj": 0, "ait": 0, "n": 285000, "d": 285000, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 58, "c": "Mohakhali", "u": "SL 57", "t": "Ahmed Trading Co.", "s": "2022-11-01", "e": "2032-05-30", "a": 8500, "p": "01972662090 Mr. Sumon", "ad": 2040000, "g": 395747, "aj": 0, "ait": 0, "n": 395747, "d": 327064, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 59, "c": "Chittagong", "u": "Shop 1", "t": "Saiful Islam & Others", "s": "2019-01-30", "e": "2027-01-29", "a": 5049, "p": "", "ad": 0, "g": 5048, "aj": 0, "ait": 0, "n": 5048, "d": 3319, "ev": 2, "pc": 0.15, "ty": "Original" }, { "i": 60, "c": "Chittagong", "u": "Shop 2", "t": "Narayan Prashad Biswas", "s": "2019-02-01", "e": "2027-01-31", "a": 4229, "p": "", "ad": 0, "g": 4228, "aj": 0, "ait": 0, "n": 4228, "d": 2780, "ev": 2, "pc": 0.15, "ty": "Original" }, { "i": 61, "c": "Chittagong", "u": "Shop 3", "t": "Mohammad Rafique Uddin", "s": "2019-03-30", "e": "2027-03-29", "a": 4506, "p": "", "ad": 0, "g": 3918, "aj": 0, "ait": 0, "n": 3918, "d": 2576, "ev": 2, "pc": 0.15, "ty": "Original" }, { "i": 62, "c": "Chittagong", "u": "Shop 4", "t": "Md. Jahangir", "s": "2019-04-01", "e": "2027-03-31", "a": 4506, "p": "", "ad": 0, "g": 3918, "aj": 0, "ait": 0, "n": 3918, "d": 2576, "ev": 2, "pc": 0.15, "ty": "Original" }, { "i": 63, "c": "Chittagong", "u": "Shop 5", "t": "Hesnara Begum", "s": "2020-01-01", "e": "2028-12-21", "a": 3917, "p": "", "ad": 0, "g": 3918, "aj": 0, "ait": 0, "n": 3918, "d": 2576, "ev": 2, "pc": 0.15, "ty": "Original" }, { "i": 64, "c": "Chittagong", "u": "Shop 6 A", "t": "Md. Shamsul Haque & Others", "s": "2019-12-01", "e": "2027-11-30", "a": 3917, "p": "", "ad": 0, "g": 3918, "aj": 0, "ait": 0, "n": 3918, "d": 2576, "ev": 2, "pc": 0.15, "ty": "Original" }, { "i": 65, "c": "Chittagong", "u": "Shop 6 B", "t": "Md. Shamsul Haque & Others", "s": "2026-04-01", "e": "2034-03-31", "a": 3360, "p": "", "ad": 0, "g": 3360, "aj": 0, "ait": 0, "n": 3360, "d": 3360, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 66, "c": "Chittagong", "u": "Shop 8", "t": "Md. Shafiqur Rahman", "s": "2026-05-01", "e": "2034-04-30", "a": 3640, "p": "", "ad": 0, "g": 3640, "aj": 0, "ait": 0, "n": 3640, "d": 3640, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 67, "c": "Chittagong", "u": "Shop 9", "t": "Md. Ershadul Islam", "s": "2019-07-01", "e": "2027-06-30", "a": 4093, "p": "", "ad": 0, "g": 3582, "aj": 0, "ait": 0, "n": 3582, "d": 2691, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 68, "c": "Chittagong", "u": "Shop 10", "t": "Sree Liton Chandra Sinha", "s": "2019-01-25", "e": "2027-01-24", "a": 2864, "p": "", "ad": 0, "g": 2864, "aj": 0, "ait": 0, "n": 2864, "d": 1883, "ev": 2, "pc": 0.15, "ty": "Original" }, { "i": 69, "c": "Chittagong", "u": "Shop 10 B", "t": "Etusree Chowdhury", "s": "2025-11-01", "e": "2035-10-31", "a": 1200, "p": "", "ad": 0, "g": 1200, "aj": 0, "ait": 0, "n": 1200, "d": 1200, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 70, "c": "Chittagong", "u": "Shop 11", "t": "Al Haj Abdul Quddus", "s": "2019-11-25", "e": "2027-11-24", "a": 3547, "p": "", "ad": 0, "g": 4725, "aj": 0, "ait": 0, "n": 4725, "d": 3550, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 71, "c": "Chittagong", "u": "Shop 12", "t": "Mohammad Ayub", "s": "2019-03-30", "e": "2027-03-29", "a": 3547, "p": "", "ad": 0, "g": 3547, "aj": 0, "ait": 0, "n": 3547, "d": 2332, "ev": 2, "pc": 0.15, "ty": "Original" }, { "i": 72, "c": "Chittagong", "u": "Shop 13", "t": "Md. Jahangir", "s": "2025-10-01", "e": "2033-09-30", "a": 4000, "p": "", "ad": 0, "g": 4000, "aj": 0, "ait": 0, "n": 4000, "d": 4000, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 73, "c": "Chittagong", "u": "Shop 14", "t": "Omar Faruk", "s": "2021-05-01", "e": "2029-04-30", "a": 3795, "p": "", "ad": 0, "g": 3796, "aj": 0, "ait": 0, "n": 3796, "d": 2870, "ev": 2, "pc": 0.15, "ty": "Original" }, { "i": 74, "c": "Chittagong", "u": "Shop 15", "t": "Rafique", "s": "2025-08-01", "e": "2033-07-31", "a": 4040, "p": "", "ad": 0, "g": 4040, "aj": 0, "ait": 0, "n": 4040, "d": 4040, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 75, "c": "Chittagong", "u": "Shop 16", "t": "Abul Hossain", "s": "2021-11-01", "e": "2029-10-31", "a": 3897, "p": "", "ad": 0, "g": 3897, "aj": 0, "ait": 0, "n": 3897, "d": 2947, "ev": 2, "pc": 0.15, "ty": "Original" }, { "i": 76, "c": "Chittagong", "u": "Shop 17 A", "t": "Md. Shamsul Haque & Others", "s": "2019-12-01", "e": "2027-11-30", "a": 4390, "p": "", "ad": 0, "g": 4391, "aj": 0, "ait": 0, "n": 4391, "d": 2887, "ev": 2, "pc": 0.15, "ty": "Original" }, { "i": 77, "c": "Chittagong", "u": "Shop 17 B", "t": "Abu Bakar Siddique", "s": "2019-10-01", "e": "2027-09-30", "a": 3145, "p": "", "ad": 0, "g": 4058, "aj": 0, "ait": 0, "n": 4058, "d": 2668, "ev": 2, "pc": 0.15, "ty": "Original" }, { "i": 78, "c": "Chittagong", "u": "Shop 19", "t": "Ruma Rani Singh & Others", "s": "2026-04-01", "e": "2034-03-31", "a": 4040, "p": "", "ad": 0, "g": 4040, "aj": 0, "ait": 0, "n": 4040, "d": 4040, "ev": 2, "pc": 0.15, "ty": "Original" }, { "i": 79, "c": "Chittagong", "u": "Shop 20", "t": "Abu Bakar Siddique", "s": "2025-11-01", "e": "2033-10-31", "a": 4050, "p": "", "ad": 0, "g": 4050, "aj": 0, "ait": 0, "n": 4050, "d": 4050, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 80, "c": "Chittagong", "u": "Shop 21 A", "t": "Dipok Kumar Paul", "s": "2019-11-01", "e": "2027-10-31", "a": 3092, "p": "", "ad": 0, "g": 3092, "aj": 0, "ait": 0, "n": 3092, "d": 2033, "ev": 2, "pc": 0.15, "ty": "Original" }, { "i": 81, "c": "Chittagong", "u": "Shop 21 B", "t": "Md. Ali Abbas & Others", "s": "2019-12-01", "e": "2027-11-30", "a": 3501, "p": "", "ad": 0, "g": 3501, "aj": 0, "ait": 0, "n": 3501, "d": 2302, "ev": 2, "pc": 0.15, "ty": "Original" }, { "i": 82, "c": "Chittagong", "u": "Shop 22", "t": "Subas Kanti Day", "s": "2020-07-01", "e": "2028-06-30", "a": 4349, "p": "", "ad": 0, "g": 5002, "aj": 0, "ait": 0, "n": 5002, "d": 3289, "ev": 2, "pc": 0.15, "ty": "Original" }, { "i": 83, "c": "Chittagong", "u": "Shop 23", "t": "Tilak Mallick", "s": "2021-11-01", "e": "2029-10-31", "a": 3976, "p": "", "ad": 0, "g": 4840, "aj": 0, "ait": 0, "n": 4840, "d": 4000, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 84, "c": "Chittagong", "u": "Shop 24", "t": "Rathindra Nath Ghosh", "s": "2019-10-10", "e": "2027-10-31", "a": 4352, "p": "", "ad": 0, "g": 4351, "aj": 0, "ait": 0, "n": 4351, "d": 2861, "ev": 2, "pc": 0.15, "ty": "Original" }, { "i": 85, "c": "Chittagong", "u": "Shop 25", "t": "Kamol Kanti day", "s": "2020-02-01", "e": "2028-01-31", "a": 4714, "p": "", "ad": 0, "g": 4715, "aj": 0, "ait": 0, "n": 4715, "d": 3100, "ev": 2, "pc": 0.15, "ty": "Original" }, { "i": 86, "c": "Chittagong", "u": "Shop 26 A", "t": "Swapan Kumar Chowdhury", "s": "2020-04-01", "e": "2028-03-31", "a": 3137, "p": "", "ad": 0, "g": 3138, "aj": 0, "ait": 0, "n": 3138, "d": 2063, "ev": 2, "pc": 0.15, "ty": "Original" }, { "i": 87, "c": "Chittagong", "u": "Shop 26 B", "t": "Sree Depak Kumar Paul & Others", "s": "2019-01-25", "e": "2027-01-24", "a": 3137, "p": "", "ad": 0, "g": 3138, "aj": 0, "ait": 0, "n": 3138, "d": 2063, "ev": 2, "pc": 0.15, "ty": "Original" }, { "i": 88, "c": "Chittagong", "u": "Shop 27 & 28", "t": "Alak Kumar Mallick & Others", "s": "2019-01-25", "e": "2027-01-24", "a": 8457, "p": "", "ad": 0, "g": 8458, "aj": 0, "ait": 0, "n": 8458, "d": 5561, "ev": 2, "pc": 0.15, "ty": "Original" }, { "i": 89, "c": "Chittagong", "u": "Shop 29", "t": "M.A. Sabur", "s": "2020-08-01", "e": "2028-07-31", "a": 3361, "p": "", "ad": 0, "g": 3866, "aj": 0, "ait": 0, "n": 3866, "d": 2542, "ev": 2, "pc": 0.15, "ty": "Original" }, { "i": 90, "c": "Chittagong", "u": "Shop 30", "t": "Badal Chandra Singha", "s": "2019-12-01", "e": "2027-11-30", "a": 3866, "p": "", "ad": 0, "g": 3866, "aj": 0, "ait": 0, "n": 3866, "d": 2542, "ev": 2, "pc": 0.15, "ty": "Original" }, { "i": 91, "c": "Chittagong", "u": "Shop 31", "t": "Mohammad Salesh Ahmed & Others", "s": "2019-06-01", "e": "2027-05-31", "a": 3866, "p": "", "ad": 0, "g": 3866, "aj": 0, "ait": 0, "n": 3866, "d": 2542, "ev": 2, "pc": 0.15, "ty": "Original" }, { "i": 92, "c": "Chittagong", "u": "Shop 32", "t": "Nur Nahar", "s": "2019-12-01", "e": "2027-11-30", "a": 3866, "p": "", "ad": 0, "g": 3866, "aj": 0, "ait": 0, "n": 3866, "d": 2542, "ev": 2, "pc": 0.15, "ty": "Photo Copy" }, { "i": 93, "c": "Chittagong", "u": "Shop 33", "t": "Mohammad Zahed & Others", "s": "2019-06-01", "e": "2027-05-31", "a": 3729, "p": "", "ad": 0, "g": 3729, "aj": 0, "ait": 0, "n": 3729, "d": 2452, "ev": 2, "pc": 0.15, "ty": "Original" }, { "i": 94, "c": "Chittagong", "u": "Shop 34", "t": "Subash Kanti Dey", "s": "2021-11-01", "e": "2029-10-31", "a": 3218, "p": "", "ad": 0, "g": 3218, "aj": 0, "ait": 0, "n": 3218, "d": 2433, "ev": 2, "pc": 0.15, "ty": "Original" }, { "i": 95, "c": "Chittagong", "u": "Shop 35", "t": "Sumit Biswas & Others", "s": "2021-11-01", "e": "2029-10-31", "a": 3394, "p": "", "ad": 0, "g": 3394, "aj": 0, "ait": 0, "n": 3394, "d": 2566, "ev": 2, "pc": 0.15, "ty": "Original" }, { "i": 96, "c": "Chittagong", "u": "Shop 36 & 37", "t": "Ruma Rani Singha", "s": "2022-01-01", "e": "2029-12-31", "a": 4634, "p": "", "ad": 0, "g": 4592, "aj": 0, "ait": 0, "n": 4592, "d": 3795, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 97, "c": "Chittagong", "u": "Shop 38", "t": "Pintu Kumar Dey", "s": "2022-03-01", "e": "2030-02-28", "a": 2541, "p": "", "ad": 0, "g": 2541, "aj": 0, "ait": 0, "n": 2541, "d": 2100, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 98, "c": "Chittagong", "u": "Shop 39) Lift room", "t": "Nasir Hossain", "s": "2025-05-01", "e": "2033-04-30", "a": 15400, "p": "", "ad": 0, "g": 15400, "aj": 0, "ait": 0, "n": 15400, "d": 15400, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 99, "c": "Chittagong", "u": "Shop 40", "t": "Raju Ghosh", "s": "2022-01-01", "e": "2029-12-31", "a": 1289, "p": "", "ad": 0, "g": 1289, "aj": 0, "ait": 0, "n": 1289, "d": 1065, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 100, "c": "Chittagong", "u": "Shop 41", "t": "Delower Hossain Munna", "s": "2026-01-01", "e": "2033-12-31", "a": 3850, "p": "", "ad": 0, "g": 3850, "aj": 0, "ait": 0, "n": 3850, "d": 3850, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 101, "c": "Chittagong", "u": "Shop 42", "t": "M.A. Sabur", "s": "2024-01-01", "e": "2031-12-31", "a": 4233, "p": "", "ad": 0, "g": 4233, "aj": 0, "ait": 0, "n": 4233, "d": 3848, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 102, "c": "Chittagong", "u": "Shop 43", "t": "Ali Abbas", "s": "2018-08-01", "e": "2026-07-31", "a": 2024, "p": "", "ad": 0, "g": 3294, "aj": 0, "ait": 0, "n": 3294, "d": 2250, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 103, "c": "Chittagong", "u": "Shop 44", "t": "Md. Shafeul Alam & Others", "s": "2025-05-01", "e": "2033-04-30", "a": 5195, "p": "", "ad": 0, "g": 5195, "aj": 0, "ait": 0, "n": 5195, "d": 5195, "ev": 2, "pc": 0.1, "ty": "Photo Copy" }, { "i": 104, "c": "Chittagong", "u": "Shop 45", "t": "Itusree Chowdhury", "s": "2019-01-01", "e": "2027-12-31", "a": 1400, "p": "", "ad": 0, "g": 1863, "aj": 0, "ait": 0, "n": 1863, "d": 1400, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 105, "c": "Chittagong", "u": "Shop 46", "t": "Sumon Chowdhury", "s": "2019-09-01", "e": "2027-08-30", "a": 13118, "p": "", "ad": 0, "g": 13118, "aj": 0, "ait": 0, "n": 13118, "d": 8625, "ev": 2, "pc": 0.15, "ty": "Original" }, { "i": 106, "c": "Chittagong", "u": "Shop 47", "t": "Shuva Das", "s": "2020-08-01", "e": "2028-07-31", "a": 2645, "p": "", "ad": 0, "g": 3042, "aj": 0, "ait": 0, "n": 3042, "d": 2000, "ev": 2, "pc": 0.15, "ty": "Original" }, { "i": 107, "c": "Chittagong", "u": "Shop 3 A", "t": "Jahangir", "s": "2019-11-01", "e": "2027-10-31", "a": 13992, "p": "", "ad": 0, "g": 13992, "aj": 0, "ait": 0, "n": 13992, "d": 9200, "ev": 2, "pc": 0.15, "ty": "Original" }, { "i": 108, "c": "Chittagong", "u": "Shop 3 B", "t": "Nurul Amin", "s": "2019-11-01", "e": "2027-10-31", "a": 15741, "p": "", "ad": 0, "g": 15741, "aj": 0, "ait": 0, "n": 15741, "d": 10350, "ev": 2, "pc": 0.15, "ty": "Original" }, { "i": 109, "c": "Chittagong", "u": "Shop 3 C", "t": "Etusree Chowdhury", "s": "2025-09-01", "e": "2035-08-31", "a": 2500, "p": "", "ad": 0, "g": 2500, "aj": 0, "ait": 0, "n": 2500, "d": 2500, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 110, "c": "Chittagong", "u": "Shop 3 D", "t": "Lucky Biswas", "s": "2026-02-01", "e": "2036-01-31", "a": 2500, "p": "", "ad": 0, "g": 2500, "aj": 0, "ait": 0, "n": 2500, "d": 2500, "ev": 2, "pc": 0, "ty": "Original" }, { "i": 111, "c": "Mohakhali", "u": "Shop 1", "t": "Mizanur Rahman", "s": "2025-03-01", "e": "2033-02-28", "a": 20500, "p": "", "ad": 0, "g": 20500, "aj": 0, "ait": 0, "n": 20500, "d": 20500, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 112, "c": "Mohakhali", "u": "Shop 2", "t": "Abdur Rahman Vuiya", "s": "2025-03-01", "e": "2033-02-28", "a": 11600, "p": "", "ad": 0, "g": 11600, "aj": 0, "ait": 0, "n": 11600, "d": 11600, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 113, "c": "Mohakhali", "u": "Shop 3", "t": "Nurul Ahsan Rumi", "s": "2025-03-01", "e": "2033-02-28", "a": 11600, "p": "", "ad": 0, "g": 11600, "aj": 0, "ait": 0, "n": 11600, "d": 11600, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 114, "c": "Mohakhali", "u": "Shop 4,5 & 6", "t": "Shipu Mikal Folio & Others", "s": "2026-05-01", "e": "2034-04-30", "a": 16200, "p": "", "ad": 0, "g": 16200, "aj": 0, "ait": 0, "n": 16200, "d": 16200, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 115, "c": "Mohakhali", "u": "Shop 7", "t": "Shipu Mikal Folio", "s": "2025-03-01", "e": "2033-02-28", "a": 11600, "p": "", "ad": 0, "g": 11600, "aj": 0, "ait": 0, "n": 11600, "d": 11600, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 116, "c": "Mohakhali", "u": "Shop 8", "t": "Joynal Abiden", "s": "2025-03-01", "e": "2033-02-28", "a": 17400, "p": "", "ad": 0, "g": 17400, "aj": 0, "ait": 0, "n": 17400, "d": 17400, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 117, "c": "Mohakhali", "u": "Shop 9", "t": "Salim", "s": "2020-08-01", "e": "2028-07-31", "a": 6296, "p": "", "ad": 0, "g": 7241, "aj": 0, "ait": 0, "n": 7241, "d": 4761, "ev": 2, "pc": 0.15, "ty": "Original" }, { "i": 118, "c": "Mohakhali", "u": "Shop 10", "t": "Delwar Hossain Ripon", "s": "2026-05-01", "e": "2034-04-30", "a": 4620, "p": "", "ad": 0, "g": 4620, "aj": 0, "ait": 0, "n": 4620, "d": 4620, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 119, "c": "Mohakhali", "u": "Shop 11", "t": "Mojammal Hoque", "s": "2025-12-01", "e": "2033-11-30", "a": 4700, "p": "", "ad": 0, "g": 4700, "aj": 0, "ait": 0, "n": 4700, "d": 4700, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 120, "c": "Mohakhali", "u": "Shop 12 & 13", "t": "Atikur Rahman", "s": "2022-06-01", "e": "2030-05-31", "a": 25203, "p": "", "ad": 0, "g": 27724, "aj": 0, "ait": 0, "n": 27724, "d": 22912, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 121, "c": "Mohakhali", "u": "Shop 14", "t": "Monirul Islam", "s": "2025-12-01", "e": "2033-11-30", "a": 5860, "p": "", "ad": 0, "g": 5860, "aj": 0, "ait": 0, "n": 5860, "d": 5860, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 122, "c": "Mohakhali", "u": "Shop 15", "t": "Hasina Bagum", "s": "2022-02-01", "e": "2030-01-31", "a": 4417, "p": "", "ad": 0, "g": 4417, "aj": 0, "ait": 0, "n": 4417, "d": 3650, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 123, "c": "Mohakhali", "u": "Shop 16 & 17", "t": "Habibur Rahman", "s": "2019-04-01", "e": "2027-03-31", "a": 21900, "p": "", "ad": 0, "g": 21901, "aj": 0, "ait": 0, "n": 21901, "d": 14400, "ev": 2, "pc": 0.15, "ty": "Original" }, { "i": 124, "c": "Mohakhali", "u": "Shop 18", "t": "Aysha Siddiqua", "s": "2025-12-01", "e": "2033-11-30", "a": 4620, "p": "", "ad": 0, "g": 4620, "aj": 0, "ait": 0, "n": 4620, "d": 4620, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 125, "c": "Mohakhali", "u": "Shop 19", "t": "Nurul Islam sorder", "s": "2026-02-01", "e": "2034-01-31", "a": 4800, "p": "", "ad": 0, "g": 4800, "aj": 0, "ait": 0, "n": 4800, "d": 4800, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 126, "c": "Mohakhali", "u": "Shop 20", "t": "Latif Akando", "s": "2022-03-01", "e": "2030-02-28", "a": 4224, "p": "", "ad": 0, "g": 4224, "aj": 0, "ait": 0, "n": 4224, "d": 3491, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 127, "c": "Mohakhali", "u": "Shop 21 & 22", "t": "Aysha Siddiqua", "s": "2025-04-01", "e": "2033-03-31", "a": 30000, "p": "", "ad": 0, "g": 30000, "aj": 0, "ait": 0, "n": 30000, "d": 30000, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 128, "c": "Mohakhali", "u": "Shop 23", "t": "Khorshed Alam", "s": "2026-09-01", "e": "2034-08-31", "a": 6470, "p": "", "ad": 0, "g": 6470, "aj": 0, "ait": 0, "n": 6470, "d": 6470, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 129, "c": "Mohakhali", "u": "Shop 24", "t": "Saiful Islam", "s": "2018-12-01", "e": "2026-11-30", "a": 5475, "p": "", "ad": 0, "g": 5475, "aj": 0, "ait": 0, "n": 5475, "d": 3600, "ev": 2, "pc": 0.15, "ty": "Original" }, { "i": 130, "c": "Mohakhali", "u": "Shop 25", "t": "Nurul Ahsan Rumi", "s": "2026-03-01", "e": "2034-02-28", "a": 4620, "p": "", "ad": 0, "g": 4620, "aj": 0, "ait": 0, "n": 4620, "d": 4620, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 131, "c": "Mohakhali", "u": "Shop 26", "t": "Anwar Hossain", "s": "2025-03-01", "e": "2033-03-28", "a": 14100, "p": "", "ad": 0, "g": 14100, "aj": 0, "ait": 0, "n": 14100, "d": 14100, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 132, "c": "Mohakhali", "u": "Shop 27", "t": "Aysha Siddiqua", "s": "2025-10-01", "e": "2033-09-30", "a": 5150, "p": "", "ad": 0, "g": 5150, "aj": 0, "ait": 0, "n": 5150, "d": 5150, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 133, "c": "Mohakhali", "u": "Shop 28 & 29", "t": "Subimal Saha", "s": "2019-09-01", "e": "2027-08-31", "a": 10950, "p": "", "ad": 0, "g": 10950, "aj": 0, "ait": 0, "n": 10950, "d": 7200, "ev": 2, "pc": 0.15, "ty": "Original" }, { "i": 134, "c": "Mohakhali", "u": "Shop 30", "t": "Salim & others", "s": "2026-02-01", "e": "2034-01-31", "a": 4800, "p": "", "ad": 0, "g": 4800, "aj": 0, "ait": 0, "n": 4800, "d": 4800, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 135, "c": "Mohakhali", "u": "Shop 31", "t": "Mr. Mojammal Hoque", "s": "2025-12-01", "e": "2033-11-30", "a": 4700, "p": "", "ad": 0, "g": 4620, "aj": 0, "ait": 0, "n": 4620, "d": 4620, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 136, "c": "Mohakhali", "u": "Shop 32 & 33", "t": "Salim & others", "s": "2025-03-01", "e": "2033-02-28", "a": 30000, "p": "", "ad": 0, "g": 30000, "aj": 0, "ait": 0, "n": 30000, "d": 30000, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 137, "c": "Mohakhali", "u": "Shop 34", "t": "Salim", "s": "2019-09-01", "e": "2027-08-31", "a": 5475, "p": "", "ad": 0, "g": 5475, "aj": 0, "ait": 0, "n": 5475, "d": 3600, "ev": 2, "pc": 0.15, "ty": "Original" }, { "i": 138, "c": "Mohakhali", "u": "Shop 35", "t": "Mohammad Talha", "s": "2019-09-01", "e": "2027-08-31", "a": 5475, "p": "", "ad": 0, "g": 5475, "aj": 0, "ait": 0, "n": 5475, "d": 3600, "ev": 2, "pc": 0.15, "ty": "Original" }, { "i": 139, "c": "Mohakhali", "u": "Shop 36", "t": "Salim", "s": "2022-02-01", "e": "2030-01-31", "a": 5475, "p": "", "ad": 0, "g": 5009, "aj": 0, "ait": 0, "n": 5009, "d": 4140, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 140, "c": "Mohakhali", "u": "Shop 37", "t": "Salim", "s": "2022-02-01", "e": "2030-01-31", "a": 4015, "p": "", "ad": 0, "g": 4417, "aj": 0, "ait": 0, "n": 4417, "d": 3650, "ev": 2, "pc": 0.1, "ty": "Original" }, { "i": 141, "c": "Mohakhali", "u": "Shop 38", "t": "Kobat Hossen", "s": "2026-09-01", "e": "2034-08-31", "a": 4620, "p": "", "ad": 0, "g": 4620, "aj": 0, "ait": 0, "n": 4620, "d": 4620, "ev": 2, "pc": 0.1, "ty": "Original" }];
+        const T = new Date('2026-11-18'), MS = 864e5, $ = s => document.querySelector(s);
+        const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+        const fmt = n => '৳' + Math.round(n).toLocaleString('en-IN');
+        const cr = n => n >= 1e7 ? '৳' + (n / 1e7).toFixed(2) + ' Cr' : n >= 1e5 ? '৳' + (n / 1e5).toFixed(1) + ' L' : fmt(n);
+        const hs = n => { n = Math.imul(n ^ n >>> 15, 2246822519); n = Math.imul(n ^ n >>> 13, 3266489917); return (n ^ n >>> 16) >>> 0 };
+        const dt = d => new Date(d).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+        const D = DATA.map(x => ({ ...x, sd: new Date(x.s), ed: new Date(x.e), sec: Math.round(x.ad * .5), nt: [] }));
+        const byId = id => D.find(x => x.i == id), act = x => x.sd <= T && x.ed >= T, left = x => Math.ceil((x.ed - T) / MS);
+        const ov = {}, audit = [], admins = [['Farhana Haque', 'Super admin'], ['Tanvir Ahmed', 'Admin'], ['Nusrat Jahan', 'Admin']];
+        const ST = { paid: 'Paid', part: 'Partial', due: 'Due', claim: 'Claim pending', exp: 'Expired' }, MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        let view = 'dash', cat = null, q = '', flt = 'all', role = 'super', sel = null, tab = 'ov', xf = '120';
+        const ICO = { dash: 'M3 12l9-8 9 8M5 10v10h14V10', tenants: 'M16 8a4 4 0 11-8 0 4 4 0 018 0zM4 21c0-4 4-6 8-6s8 2 8 6', approvals: 'M5 13l4 4L19 7', expiry: 'M12 7v5l3 2M21 12a9 9 0 11-18 0 9 9 0 0118 0z', team: 'M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z' };
+        const TITLES = { dash: 'Portfolio overview', tenants: 'All tenants', approvals: 'Payment approvals', expiry: 'Agreements & renewals', team: 'Admin team' };
+        function led(x) {
+            return [0, 1, 2, 3, 4, 5].map(k => {
+                const d = new Date(2026, 10 - k, 1); if (d < new Date(x.sd.getFullYear(), x.sd.getMonth(), 1) || d > x.ed) return null; const h = hs(x.i * 13 + k * 7 + 3) % 100, o = ov[x.i + '_' + k], due = x.n; let paid, st;
+                if (o) { paid = o.paid; st = o.st } else if (k == 0) { st = h < 58 ? 'paid' : h < 70 ? 'part' : h < 86 ? 'due' : 'claim'; paid = st == 'paid' ? due : st == 'part' ? Math.round(due * (.4 + h % 5 / 10)) : 0 } else { st = h < 84 ? 'paid' : 'due'; paid = st == 'paid' ? due : 0 }
+                return { k, lb: MON[d.getMonth()] + ' ' + d.getFullYear(), due, paid, st }
+            })
+        }
+        const st = x => act(x) ? led(x)[0].st : 'exp';
+        function stats(L) { const r = { n: L.length, a: 0, recv: 0, paid: 0, out: 0, c: 0 }; L.forEach(x => { if (act(x)) r.a++; led(x).forEach(m => { if (!m) return; r.out += m.due - m.paid; if (m.k == 0) { r.recv += m.due; r.paid += m.paid; if (m.st == 'claim') r.c++ } }) }); return r }
+        const cats = () => [...new Set(D.map(x => x.c))].map(c => ({ c, s: stats(D.filter(x => x.c == c)) })).sort((a, b) => b.s.recv - a.s.recv);
+        const av = x => `<i class="av" style="background:hsl(${hs(x.i * 5) % 360} 42% 38%)">${esc(x.t.replace(/[^A-Za-z ]/g, '').split(' ').filter(Boolean).slice(0, 2).map(w => w[0]).join('').toUpperCase())}</i>`;
+        const chip = s => `<span class="chip ${s}">${ST[s]}</span>`;
+        function toast(m) { const t = $('#ts'); t.textContent = m; t.classList.add('o'); clearTimeout(t.h); t.h = setTimeout(() => t.classList.remove('o'), 2400) }
+        function nav() { $('#nav').innerHTML = Object.keys(TITLES).filter(k => k != 'team' || role == 'super').map(k => `<button data-v="${k}" onclick="go('${k}')"><svg viewBox="0 0 24 24"><path d="${ICO[k]}"/></svg><span>${TITLES[k]}</span>${k == 'approvals' ? `<em>${stats(D).c}</em>` : ''}</button>`).join('') }
+        function go(v) { view = v; cat = null; q = ''; $('#q').value = ''; flt = 'all'; render() }
+        function render() { nav(); document.querySelectorAll('.nav button').forEach(b => b.classList.toggle('on', b.dataset.v == (view == 'cat' ? 'dash' : view))); $('#ttl').textContent = view == 'cat' ? cat : TITLES[view]; $('#main').innerHTML = ({ dash, cat: catV, tenants: () => filters() + tbl(fl(D), 1), approvals, expiry, team })[view](); if (sel) drawer() }
+        const fl = L => L.filter(x => (!q || (x.t + x.c + x.u).toLowerCase().includes(q)) && (flt == 'all' || st(x) == flt));
+        const filters = () => `<div class="bar2">${['all', 'paid', 'part', 'due', 'claim', 'exp'].map(f => `<button class="fl ${flt == f ? 'on' : ''}" onclick="flt='${f}';render()">${f == 'all' ? 'All' : ST[f]}</button>`).join('')}</div>`;
+        function tbl(L, sc) { return `<div class="tw"><table><thead><tr><th>Tenant</th><th class="r">Area sqft</th><th class="r">Monthly rent</th><th class="r">Paid this month</th><th>Status</th><th class="r">Expires in</th></tr></thead><tbody>${L.map(x => { const s = st(x), l = left(x); return `<tr onclick="openT(${x.i})"><td><div class="who">${av(x)}<div><b>${esc(x.t)}</b><small>${esc(sc ? x.c + ' · ' + x.u : x.u)}</small></div></div></td><td class="r">${x.a.toLocaleString('en-IN')}</td><td class="r">${fmt(x.n)}</td><td class="r">${s == 'exp' ? '–' : fmt(led(x)[0].paid)}</td><td>${chip(s)}</td><td class="r ${l <= 120 ? 'warn' : ''}">${l < 0 ? 'Ended' : l + ' days'}</td></tr>` }).join('') || '<tr><td colspan="6" class="empty">No tenants match these filters.</td></tr>'}</tbody></table></div>` }
+        function dash() {
+            const S = stats(D), p = S.recv ? S.paid / S.recv : 0, C = 2 * Math.PI * 62, tr = [5, 4, 3, 2, 1, 0].map(k => { let a = 0, b = 0; D.forEach(x => { const m = led(x)[k]; if (m) { a += m.due; b += m.paid } }); return { k, a, b } }), mx = Math.max(...tr.map(t => t.a));
+            const ex = D.filter(x => left(x) >= 0 && left(x) <= 120).sort((a, b) => left(a) - left(b)).slice(0, 5), cl = D.filter(x => act(x) && led(x)[0].st == 'claim').slice(0, 4);
+            return `<div class="hero"><div class="ring"><svg width="150" height="150"><circle cx="75" cy="75" r="62" fill="none" stroke="#223A6B" stroke-width="14"/><circle cx="75" cy="75" r="62" fill="none" stroke="#D9A441" stroke-width="14" stroke-linecap="round" stroke-dasharray="${p * C} ${C}"/></svg><div><b>${Math.round(p * 100)}%</b><small>collected</small></div></div>
+<div><h2>November 2026 rent receivable</h2><div class="big">${cr(S.recv)}</div><div class="hk"><div><b>${cr(S.paid)}</b>Collected</div><div><b>${cr(S.recv - S.paid)}</b>Pending this month</div><div><b>${cr(S.out - (S.recv - S.paid))}</b>Overdue from earlier</div><div><b>${S.a}</b>Active agreements</div></div></div>
+<div><h2>Six-month collection</h2><div class="trend">${tr.map(t => `<div><i style="height:${t.a / mx * 88}%"><u style="height:${t.a ? t.b / t.a * 100 : 0}%"></u></i>${MON[new Date(2026, 10 - t.k, 1).getMonth()]}</div>`).join('')}</div></div></div>
+<h3 class="t">Categories</h3><div class="grid">${cats().map(({ c, s }) => `<div class="card cat" onclick="cat='${c}';view='cat';flt='all';render()"><h3>${esc(c)}</h3><small>${s.n} agreements · ${s.a} active</small><div class="v">${cr(s.recv)}<span class="mut" style="font-size:12px;font-weight:500"> / month</span></div><div class="bar"><i style="width:${s.recv ? s.paid / s.recv * 100 : 0}%"></i></div><div class="row2"><span>Paid <b>${cr(s.paid)}</b></span><span>Due <b>${cr(s.out)}</b></span></div></div>`).join('')}</div>
+<div class="sec"><div class="card"><h3 class="t">Claims awaiting approval</h3>${cl.map(x => `<div class="li">${av(x)}<div><b>${esc(x.t)}</b><span class="mut">${esc(x.c)}</span></div><b>${fmt(x.n)}</b></div>`).join('') || '<span class="mut">All caught up.</span>'}<button class="btn" style="margin-top:10px" onclick="go('approvals')">Review all</button></div>
+<div class="card"><h3 class="t">Agreements ending soon</h3>${ex.map(x => `<div class="li" style="cursor:pointer" onclick="openT(${x.i})">${av(x)}<div><b>${esc(x.t)}</b><span class="mut">${esc(x.c)}</span></div><b class="warn">${left(x)} days</b></div>`).join('')}<button class="btn" style="margin-top:10px" onclick="go('expiry')">Manage renewals</button></div></div>`
+        }
+        function catV() { const L = D.filter(x => x.c == cat), S = stats(L); return `<button class="back" onclick="go('dash')">‹ All categories</button><div class="kp"><div class="card"><span>Monthly rent</span><b>${cr(S.recv)}</b></div><div class="card"><span>Collected</span><b>${cr(S.paid)}</b></div><div class="card"><span>Total outstanding</span><b>${cr(S.out)}</b></div><div class="card"><span>Tenants</span><b>${S.n}</b></div></div>${filters()}${tbl(fl(L), 0)}` }
+        function approvals() { const L = D.filter(x => act(x) && led(x)[0].st == 'claim'), m = ['Bank transfer', 'Cheque', 'Cash to MD']; return L.length ? `<div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(320px,1fr))">${L.map(x => `<div class="card"><div class="who">${av(x)}<div><b>${esc(x.t)}</b><small>${esc(x.c + ' · ' + x.u)}</small></div></div><div class="big" style="font-size:26px;margin:14px 0 4px">${fmt(x.n)}</div><div class="mut" style="margin-bottom:12px">${ov[x.i + '_0']?.method || m[hs(x.i) % 3]} · ${ov[x.i + '_0']?.note ? esc(ov[x.i + '_0'].note) : 'proof attached'}</div>${ov[x.i + '_0']?.img ? `<img alt="Payment proof" src="${ov[x.i + '_0'].img}" style="max-width:100%;max-height:130px;border-radius:8px;margin-bottom:12px">` : ''}<button class="btn g" onclick="decide(${x.i},1)">Approve</button> <button class="btn x" onclick="decide(${x.i},0)">Reject</button> <button class="btn" onclick="openT(${x.i})">Details</button></div>`).join('')}</div>` : '<div class="card empty">No pending claims. New tenant claims appear here with their proof.</div>' }
+        function decide(id, ok) { const x = byId(id), m = led(x)[0]; ov[id + '_0'] = ok ? { paid: m.due, st: 'paid' } : { paid: 0, st: 'due' }; log(x, (ok ? 'Approved' : 'Rejected') + ' payment claim of ' + fmt(m.due)); toast(ok ? 'Claim approved' : 'Claim rejected'); render() }
+        function log(x, t, n) { const e = { t, n, by: role == 'super' ? 'Farhana Haque' : 'Tanvir Ahmed', at: '18 Nov 2026' }; x.nt.unshift(e); audit.unshift({ ...e, w: x.t }) }
+        function expiry() { const g = [['Ended', x => left(x) < 0], ['Within 10 days', x => left(x) >= 0 && left(x) <= 10], ['Within 4 months', x => left(x) > 10 && left(x) <= 120]]; return g.map(([n, f]) => { const L = D.filter(f).sort((a, b) => left(b) - left(a)); return `<h3 class="t" style="margin-top:18px">${n} <span class="mut">(${L.length})</span></h3><div class="tw"><table><tbody>${L.slice(0, n == 'Ended' ? 8 : 99).map(x => `<tr onclick="openT(${x.i})"><td><div class="who">${av(x)}<div><b>${esc(x.t)}</b><small>${esc(x.c + ' · ' + x.u)}</small></div></div></td><td>Ends ${dt(x.e)}</td><td class="r ${left(x) <= 10 ? 'warn' : ''}">${left(x) < 0 ? 'Ended' : left(x) + ' days'}</td><td class="r" onclick="event.stopPropagation()"><button class="btn" onclick="alertT(${x.i})">Send alert</button> <button class="btn p" onclick="renewM(${x.i})">Renew</button></td></tr>`).join('')}</tbody></table></div>${n == 'Ended' && L.length > 8 ? `<p class="mut">Showing 8 of ${L.length} ended agreements. Search above to find others.</p>` : ''}` }).join('') }
+        function team() { return `<div class="card"><h3 class="t">Admins</h3>${admins.map((a, i) => `<div class="li"><i class="av" style="background:hsl(${i * 70 + 200} 45% 38%)">${a[0][0]}</i><div><b>${esc(a[0])}</b><span class="mut">${a[1]}</span></div>${a[1] == 'Admin' ? `<button class="btn x" onclick="admins.splice(${i},1);toast('Admin removed');render()">Remove</button>` : ''}</div>`).join('')}<button class="btn p" style="margin-top:12px" onclick="addM()">Add admin</button></div><p class="mut">Only a super admin can add or remove admins. Switch the role at the bottom of the sidebar to see this page disappear for an admin.</p>` }
+        function addM() { modal(`<h3>Add admin</h3><label>Full name</label><input id="an"><label>Email</label><input id="ae"><p class="err" id="er"></p><button class="btn p" onclick="addA()">Create admin</button>`) }
+        function addA() { const n = $('#an').value.trim(); if (!n) { $('#er').textContent = 'Enter the admin’s name.'; return } admins.push([n, 'Admin']); closeM(); toast('Admin added'); render() }
+        function openT(id) { sel = id; tab = 'ov'; drawer() }
+        function closeT() { sel = null; $('#dr').classList.remove('o'); $('#sh').classList.remove('o') }
+        function drawer() {
+            const x = byId(sel), L = led(x), m = L[0], s = st(x), meth = ['Bank transfer', 'Cheque', 'Cash to MD'][hs(x.i) % 3];
+            const steps = x.ev && x.pc ? [...Array(7).keys()].map(k => ({ k, d: new Date(x.sd.getFullYear() + k * x.ev, x.sd.getMonth(), x.sd.getDate()), a: x.d * Math.pow(1 + x.pc, k) })).filter(z => z.d <= x.ed) : [];
+            const body = {
+                ov: `<div class="box"><div class="kv"><div><span>Agreement</span><b>${dt(x.s)} – ${dt(x.e)}</b></div><div><span>Time left</span><b>${left(x) < 0 ? 'Ended' : left(x) + ' days'}</b></div><div><span>Rent area</span><b>${x.a.toLocaleString('en-IN')} sqft</b></div><div><span>Contact</span><b>${esc(x.p || 'Not on file')}</b></div><div><span>Deed rent</span><b>${fmt(x.d)}</b></div><div><span>Paper type</span><b>${esc(x.ty || 'Not recorded')}</b></div></div></div>
+<div class="box"><h4>Monthly rent breakdown</h4><div class="ln"><span>Current rent</span><b>${fmt(x.g)}</b></div><div class="ln"><span>Advance adjusted</span><b>− ${fmt(x.aj)}</b></div><div class="ln"><span>AIT (editable)</span><b>− ${fmt(x.ait)}</b></div><div class="ln tot"><span>Receivable</span><span>${fmt(x.n)}</span></div></div>
+<div class="box"><h4>Advance</h4><div class="kv"><div><span>Advance received</span><b>${fmt(x.ad)}</b></div><div><span>Security deposit</span><b>${fmt(x.sec)}</b></div><div><span>Refundable</span><b>${fmt(Math.max(0, x.ad - x.sec))}</b></div><div><span>Payment method</span><b>${meth}</b></div></div></div>
+<div class="box"><h4>Rent escalation${x.ev && x.pc ? ` · ${Math.round(x.pc * 1000) / 10}% every ${x.ev} yrs` : ''}</h4>${steps.length ? `<div class="tl">${steps.map(z => `<span class="${z.d <= T ? 'd' : ''}">${z.d.getFullYear()} · ${fmt(z.a)}</span>`).join('')}</div>` : '<span class="mut">No fixed escalation recorded.</span>'}</div>`,
+                pay: `<div class="tw"><table style="min-width:0"><thead><tr><th>Month</th><th class="r">Rent</th><th class="r">Paid</th><th>Status</th></tr></thead><tbody>${L.filter(Boolean).map(r => `<tr style="cursor:auto"><td>${r.lb}</td><td class="r">${fmt(r.due)}</td><td class="r">${fmt(r.paid)}</td><td>${chip(r.st)}</td></tr>`).join('')}</tbody></table></div><p class="mut">Payment history is simulated for this demo; the file has no payment records yet.</p>`,
+                doc: `<div class="docs">${['Agreement paper', 'Deed', 'Advance receipt', 'Adjustment slip', 'Payment proof', 'Renewal paper'].map(n => `<div class="doc">${n}<br>Click to upload</div>`).join('')}</div>`,
+                nt: `<button class="btn" onclick="noteM(${x.id || x.i})">Add note</button><div style="margin-top:12px">${x.nt.map(n => `<div class="note">${esc(n.t)}${n.n ? '<br><i>“' + esc(n.n) + '”</i>' : ''}<small>${n.by} · ${n.at}</small></div>`).join('') || '<span class="mut">No notes or changes recorded yet.</span>'}</div>`
+            }[tab];
+            $('#dr').innerHTML = `<div class="who">${av(x)}<div style="flex:1"><b style="font-size:18px">${esc(x.t)}</b><small>${esc(x.c + ' · ' + x.u)}</small></div>${chip(s)}<button class="btn" onclick="closeT()" aria-label="Close">✕</button></div>
+<div class="bar2" style="margin:16px 0 0">${s != 'exp' && m.paid < m.due ? `<button class="btn g" onclick="markPaid(${x.i})">Mark ${fmt(m.due - m.paid)} paid</button>` : ''}<button class="btn" onclick="alertT(${x.i})">Send alert</button><button class="btn" onclick="editM(${x.i})">Edit terms</button><button class="btn p" onclick="renewM(${x.i})">Renew</button></div>
+<div class="tabs">${[['ov', 'Overview'], ['pay', 'Payments'], ['doc', 'Documents'], ['nt', 'Notes']].map(([k, n]) => `<button class="${tab == k ? 'on' : ''}" onclick="tab='${k}';drawer()">${n}</button>`).join('')}</div>${body}`;
+            $('#dr').classList.add('o'); $('#sh').classList.add('o')
+        }
+        function markPaid(id) { const x = byId(id), m = led(x)[0]; ov[id + '_0'] = { paid: m.due, st: 'paid' }; log(x, 'Marked November rent as paid (' + fmt(m.due) + ')'); toast('Payment recorded'); render() }
+        function alertT(id) { const x = byId(id); log(x, 'Alert sent to tenant and admins'); toast('Alert sent to ' + x.t); if (sel) drawer() }
+        function modal(h) { $('#mb').innerHTML = h; $('#md').classList.add('o') } function closeM() { $('#md').classList.remove('o') }
+        function noteM(id) { modal(`<h3>Add note</h3><label>Note</label><textarea id="nt" rows="3"></textarea><p class="err" id="er"></p><button class="btn p" onclick="saveN(${id})">Save note</button>`) }
+        function saveN(id) { const v = $('#nt').value.trim(); if (!v) { $('#er').textContent = 'Write a note before saving.'; return } log(byId(id), 'Note added', v); closeM(); drawer() }
+        function editM(id) { const x = byId(id), f = (k, l, v) => `<label>${l}</label><input id="f_${k}" type="number" value="${v}">`; modal(`<h3>Edit terms · ${esc(x.t)}</h3>${f('g', 'Current rent (৳)', x.g)}${f('aj', 'Advance adjusted (৳)', x.aj)}${f('ait', 'AIT (৳)', x.ait)}${f('sec', 'Security deposit (৳)', x.sec)}<label>Reason for change (required)</label><textarea id="nt" rows="2"></textarea><p class="err" id="er"></p><button class="btn p" onclick="saveE(${id})">Save change</button>`) }
+        function saveE(id) { const x = byId(id), v = $('#nt').value.trim(); if (!v) { $('#er').textContent = 'A note is required for rent and advance changes.'; return } ['g', 'aj', 'ait', 'sec'].forEach(k => x[k] = +$('#f_' + k).value || 0); x.n = x.g - x.aj - x.ait; log(x, 'Terms edited: rent ' + fmt(x.g) + ', receivable ' + fmt(x.n), v); closeM(); toast('Change saved with note'); render() }
+        function renewM(id) { const x = byId(id); modal(`<h3>Renew agreement · ${esc(x.t)}</h3><label>New end date</label><input id="rd" type="date" value="${x.ed.getFullYear() + (x.ed < T ? 6 : 0) + 3}-${String(x.ed.getMonth() + 1).padStart(2, '0')}-${String(x.ed.getDate()).padStart(2, '0')}"><label>New agreement paper</label><input type="file"><label>Note</label><textarea id="nt" rows="2"></textarea><p class="err" id="er"></p><button class="btn p" onclick="saveR(${id})">Renew agreement</button>`) }
+        function saveR(id) { const x = byId(id), v = $('#rd').value; if (!v) { $('#er').textContent = 'Choose the new end date.'; return } x.e = v; x.ed = new Date(v); log(x, 'Agreement renewed until ' + dt(v), $('#nt').value.trim()); closeM(); toast('Agreement renewed'); render() }
+        $('#md').onclick = e => { if (e.target.id == 'md') closeM() }; document.onkeydown = e => { if (e.key == 'Escape') { closeM(); closeT() } };
+        const tnames = [...new Set(D.map(x => x.t))].sort(), tn = { name: 'Popular Pharmaceuticals Ltd.', ai: 0, img: null }; let prev = 'super';
+        const mine = () => D.filter(x => x.t == tn.name), ini = n => n.replace(/[^A-Za-z ]/g, '').split(' ').filter(Boolean).slice(0, 2).map(w => w[0]).join('').toUpperCase(), err = m => $('#er').textContent = m;
+        function setRole(r) { if (r == 'tenant' && role != 'tenant') prev = role; role = r; const t = r == 'tenant'; $('.app').style.display = t ? 'none' : ''; $('#tn').hidden = !t; closeT(); if (t) trender(); else { $('#role').value = r; if (r != 'super' && view == 'team') view = 'dash'; render() } }
+        function notif(L) { const n = []; L.forEach(x => { const l = left(x), w = x.u + ' · ' + x.c; if (l < 0) n.push(['bad', 'Agreement ended on ' + dt(x.e), w + '. Renew to keep your space.']); else if (l <= 10) n.push(['bad', 'Agreement ends in ' + l + ' days', w + ' · final 10-day notice']); else if (l <= 120) n.push(['warn', 'Agreement ends in ' + l + ' days', w + ' · 4-month notice, start your renewal']); x.nt.filter(e => /^(Alert|Approved|Rejected|Marked|Agreement renewed)/.test(e.t)).slice(0, 2).forEach(e => n.push(['ok', e.t.replace('Alert sent to tenant and admins', 'Payment reminder from AT. Haque'), e.at])) }); return n }
+        function trender() {
+            const L = mine(), S = stats(L); if (!L.some(x => x.i == tn.ai)) tn.ai = (L.find(act) || L[0]).i; const x = byId(tn.ai), a = act(x), m = a ? led(x)[0] : null, l = left(x), pr = Math.min(100, Math.max(0, (T - x.sd) / (x.ed - x.sd) * 100)), nf = notif(L); let nx = null; if (x.ev && x.pc) for (let k = 1; k < 8; k++) { const d = new Date(x.sd.getFullYear() + k * x.ev, x.sd.getMonth(), x.sd.getDate()); if (d > T && d <= x.ed) { nx = [d, x.d * Math.pow(1 + x.pc, k)]; break } }
+            const act2 = !m ? chip('exp') : m.st == 'due' || m.st == 'part' ? `<button class="btn p" onclick="claimM()">Claim a payment</button>` : chip(m.st);
+            $('#tn').innerHTML = `<header class="th"><div class="logo"><b>AT</b><span>AT. Haque Limited<small>Tenant portal</small></span></div><span style="flex:1"></span><select aria-label="Demo tenant" onchange="tn.name=this.value;tn.ai=0;trender()">${tnames.map(n => `<option ${n == tn.name ? 'selected' : ''}>${esc(n)}</option>`).join('')}</select><button class="btn" onclick="pwM()">Password</button><button class="btn" onclick="setRole(prev)">Admin view</button><button class="tav" aria-label="Change profile photo" title="Change profile photo" style="${tn.img ? `background-image:url(${tn.img})` : ''}" onclick="$('#pf').click()">${tn.img ? '' : ini(tn.name)}</button></header>
+<div class="tc"><h1 style="margin:0;font-size:26px;letter-spacing:-.02em">Hello, ${esc(tn.name)}</h1><p class="mut" style="margin:4px 0 20px">Your rent status for November 2026.</p>
+<div class="kp"><div class="card"><span>Current monthly rent</span><b>${fmt(S.recv)}</b></div><div class="card"><span>Paid this month</span><b style="color:var(--ok)">${fmt(S.paid)}</b></div><div class="card"><span>Total due rent</span><b style="color:${S.out ? 'var(--bad)' : 'var(--ok)'}">${fmt(S.out)}</b></div></div>
+<div class="tgrid"><div>${L.length > 1 ? `<div class="bar2">${L.map(y => `<button class="fl ${y.i == tn.ai ? 'on' : ''}" onclick="tn.ai=${y.i};trender()">${esc(y.c + ' · ' + y.u)}</button>`).join('')}</div>` : ''}
+<div class="card"><div class="stat"><div><span class="mut">${esc(x.c + ' · ' + x.u)}</span><div class="big">${m ? fmt(m.due - m.paid) : '–'}</div><span class="mut">${m ? (m.paid ? 'left to pay of ' + fmt(m.due) : 'due for ' + m.lb) : 'No rent due on this agreement'}</span></div>${act2}</div>${m && m.st == 'claim' ? '<div class="note">Your claim is waiting for admin approval.</div>' : ''}
+<div class="box"><div class="ln"><span>Current rent</span><b>${fmt(x.g)}</b></div><div class="ln"><span>Advance adjusted</span><b>− ${fmt(x.aj)}</b></div><div class="ln"><span>AIT</span><b>− ${fmt(x.ait)}</b></div><div class="ln tot"><span>You pay</span><span>${fmt(x.n)}</span></div></div>
+<div class="kv"><div><span>Agreement starts</span><b>${dt(x.s)}</b></div><div><span>Agreement ends</span><b>${dt(x.e)}</b></div><div><span>Rent area</span><b>${x.a.toLocaleString('en-IN')} sqft</b></div><div><span>Next rent increase</span><b>${nx ? dt(nx[0]) + ' → ' + fmt(nx[1]) : 'None scheduled'}</b></div></div>
+<div class="prog" title="${Math.round(pr)}% of term used"><i style="width:${pr}%"></i></div><div class="mut" style="margin:-8px 0 14px">${l < 0 ? 'Ended ' + (-l) + ' days ago' : l + ' days left in this agreement'}</div>${l <= 120 ? `<button class="btn p" onclick="renewT()">Request renewal</button>` : ''}</div>
+<div class="card" style="margin-top:16px"><h3 class="t">Agreement papers</h3><div class="docs"><div class="doc" onclick="toast('Demo: opens the uploaded image')">Agreement paper<br>${esc(x.ty || 'Original')}</div><div class="doc" onclick="toast('Demo: opens the uploaded image')">Deed</div><div class="doc" onclick="toast('Demo: opens the uploaded image')">Advance receipt</div></div></div>
+<div class="card" style="margin-top:16px"><h3 class="t">Payment history</h3>${led(x).filter(Boolean).map(r => `<div class="li"><div><b>${r.lb}</b><span class="mut">${fmt(r.paid)} of ${fmt(r.due)}</span></div>${chip(r.st)}</div>`).join('') || '<span class="mut">No payments recorded.</span>'}</div></div>
+<div><div class="card"><h3 class="t">Notifications</h3>${nf.map(n => `<div class="nt2 ${n[0]}"><i></i><div><b>${esc(n[1])}</b><small>${esc(n[2])}</small></div></div>`).join('') || '<span class="mut">Nothing new.</span>'}</div></div></div></div>`
+        }
+        function claimM() { const x = byId(tn.ai), m = led(x)[0]; modal(`<h3>Claim a payment</h3><div class="mut">${fmt(m.due - m.paid)} outstanding for ${m.lb}</div><label>Amount paid (৳)</label><input id="ca" type="number" value="${m.due - m.paid}"><label>Payment method</label><select id="cm"><option>Bank transfer</option><option>Cheque</option><option>Cash to MD</option></select><label>Note</label><textarea id="cn" rows="2" placeholder="Transaction reference or details"></textarea><label>Proof (image)</label><input id="ci" type="file" accept="image/*"><p class="err" id="er"></p><button class="btn p" onclick="claimS()">Send claim</button>`) }
+        function claimS() {
+            const x = byId(tn.ai), m = led(x)[0], a = +$('#ca').value, n = $('#cn').value.trim(), f = $('#ci').files[0]; if (!(a > 0)) { err('Enter the amount you paid.'); return } if (!n && !f) { err('Add a note or a proof image.'); return }
+            const fin = img => { ov[x.i + '_0'] = { paid: m.paid, st: 'claim', amt: a, note: n, method: $('#cm').value, img }; x.nt.unshift({ t: 'Tenant claimed ' + fmt(a) + ' paid via ' + $('#cm').value, n, by: x.t, at: '18 Nov 2026' }); closeM(); toast('Claim sent to admin for approval'); trender() };
+            if (f) { const r = new FileReader(); r.onload = e => fin(e.target.result); r.readAsDataURL(f) } else fin(null)
+        }
+        function pimg(i) { const f = i.files[0]; if (!f) return; const r = new FileReader(); r.onload = e => { tn.img = e.target.result; toast('Profile photo updated'); trender() }; r.readAsDataURL(f) }
+        function pwM() { modal(`<h3>Change password</h3><label>Current password</label><input id="p0" type="password"><label>New password</label><input id="p1" type="password"><label>Confirm new password</label><input id="p2" type="password"><p class="err" id="er"></p><button class="btn p" onclick="pwS()">Update password</button>`) }
+        function pwS() { if (!$('#p0').value) return err('Enter your current password.'); if ($('#p1').value.length < 8) return err('Use at least 8 characters.'); if ($('#p1').value != $('#p2').value) return err('The new passwords do not match.'); closeM(); toast('Password updated') }
+        function renewT() { modal(`<h3>Request renewal</h3><label>New agreement paper</label><input type="file"><label>Note to admin</label><textarea id="cn" rows="2"></textarea><button class="btn p" style="margin-top:14px" onclick="renewR()">Send request</button>`) }
+        function renewR() { const x = byId(tn.ai); x.nt.unshift({ t: 'Tenant requested renewal', n: $('#cn').value.trim(), by: x.t, at: '18 Nov 2026' }); closeM(); toast('Renewal request sent to admin') }
+        render();
+    </script>
+</body>
+
+</html>
